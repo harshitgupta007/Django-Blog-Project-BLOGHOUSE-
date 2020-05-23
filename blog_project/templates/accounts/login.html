@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<!--[if IE 9]>         <html class="no-js lt-ie10" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+{% load staticfiles %}
+    <head>
+        <meta charset="utf-8">
+
+        <title>Harshit's Blog</title>
+
+
+        <meta name="author" content="pixelcave">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+
+        <!-- Icons -->
+        <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+        <link rel="shortcut icon" href="{%static 'img/favicon.png' %}">
+        <link rel="apple-touch-icon" href="{% static 'img/icon57.png' %}" sizes="57x57">
+        <link rel="apple-touch-icon" href="{% static 'img/icon72.png' %}" sizes="72x72">
+        <link rel="apple-touch-icon" href="{% static 'img/icon76.png' %}" sizes="76x76">
+        <link rel="apple-touch-icon" href="{% static 'img/icon114.png' %}" sizes="114x114">
+        <link rel="apple-touch-icon" href="{% static 'img/icon120.png' %}" sizes="120x120">
+        <link rel="apple-touch-icon" href="{% static 'img/icon144.png' %}" sizes="144x144">
+        <link rel="apple-touch-icon" href="{% static 'img/icon152.png' %}" sizes="152x152">
+        <link rel="apple-touch-icon" href="{% static 'img/icon180.png' %}" sizes="180x180">
+        <!-- END Icons -->
+
+        <!-- Stylesheets -->
+        <!-- Bootstrap is included in its original form, unaltered -->
+        <link rel="stylesheet" href="{% static 'css/login/bootstrap.min.css' %}">
+
+        <!-- Related styles of various icon packs and plugins -->
+        <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+
+        <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+        <link rel="stylesheet" href="{% static 'css/login/main.css' %}">
+
+        <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
+
+        <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+        <link rel="stylesheet" href="{% static 'css/themes.css' %}">
+        <!-- END Stylesheets -->
+ <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+  <script src="{% static 'js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!-- Modernizr (browser feature detection library) -->
+        <script src="{% static 'js/modernizr.min.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/toastr.css' %}" media="all">
+  <script type="text/javascript" src="{% static 'js/toastr.min.js' %}"></script>
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    </head>
+    <body>
+        {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success'%}
+                <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+            {% elif message.tags == 'info' %}
+                <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+            {% elif message.tags == 'warning' %}
+                <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+            {% elif message.tags == 'error' %}
+                <script type=text/javascript>toastr.{{ message.tags }}('{{ message }}')</script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+        <!-- Login Background -->
+        <div id="login-background">
+            <!-- For best results use an image with a resolution of 2560x400 pixels (prefer a blurred image for smaller file size) -->
+            <img src="{% static 'img/placeholders/headers/login_header.jpg' %}" alt="Login Background" class="animation-pulseSlow">
+        </div>
+        <!-- END Login Background -->
+
+        <!-- Login Container -->
+        <div id="login-container" class="animation-fadeIn">
+            <!-- Login Title -->
+            <div class="login-title text-center">
+
+                <h1><i class="gi gi-flash"></i> <strong>Blog</strong><br><small>Please <strong>Login</strong> or <strong>Register</strong></small></h1>
+            </div>
+            <!-- END Login Title -->
+
+            <!-- Login Block -->
+            <div class="block push-bit">
+                <!-- Login Form -->
+                <form action="{%url 'login'%}" method="post" id="form-login" class="form-horizontal form-bordered form-control-borderless">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
+                                <input type="text" id="login-email" name="username" class="form-control input-lg" placeholder="username">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                                <input type="password" id="password" name="password" class="form-control input-lg" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-4">
+                            <label class="switch switch-primary" data-toggle="tooltip" title="Remember Me?">
+                                <input type="checkbox" id="login-remember-me" name="login-remember-me" checked>
+                                <span></span>
+                            </label>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Login to Dashboard</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12 text-center">
+                            <a href="javascript:void(0)" id="link-reminder-login"><small>Forgot password?</small></a> -
+                            <a href="javascript:void(0)" id="link-register-login"><small>Create a new account</small></a>
+                        </div>
+                    </div>
+                </form>
+                <!-- END Login Form -->
+
+                <!-- Reminder Form -->
+                <form action="{%url 'password_reset'%}" method="post" id="form-reminder" class="form-horizontal form-bordered form-control-borderless display-none">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
+                                <input type="text" id="reminder-email" name="reminder-email" class="form-control input-lg" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-12 text-right">
+                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Reset Password</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12 text-center">
+                            <small>Did you remember your password?</small> <a href="javascript:void(0)" id="link-reminder"><small>Login</small></a>
+                        </div>
+                    </div>
+                </form>
+                <!-- END Reminder Form -->
+
+                <!-- Register Form -->
+                <form action="{%url 'ragister' %}" method="post" id="form-register" class="form-horizontal form-bordered form-control-borderless display-none">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                <input type="text" id="username" name="username" class="form-control input-lg" placeholder="username">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                <input type="text" id="first_name" name="first_name" class="form-control input-lg" placeholder="Firstname">
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="text" id="last_name" name="last_name" class="form-control input-lg" placeholder="Lastname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
+                                <input type="text" id="email" name="email" class="form-control input-lg" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                                <input type="password" id="password1" name="password1" class="form-control input-lg" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                                <input type="password" id="password2" name="password2" class="form-control input-lg" placeholder="Verify Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-6">
+                            <a href="#modal-terms" data-toggle="modal" class="register-terms">Terms</a>
+                            <label class="switch switch-primary" data-toggle="tooltip" title="Agree to the terms">
+                                <input type="checkbox" id="register-terms" name="register-terms">
+                                <span></span>
+                            </label>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Register Account</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12 text-center">
+                            <small>Do you have an account?</small> <a href="javascript:void(0)" id="link-register"><small>Login</small></a>
+                        </div>
+                    </div>
+                </form>
+                <!-- END Register Form -->
+            </div>
+            <!-- END Login Block -->
+
+            <!-- Footer -->
+            <footer class="text-muted text-center">
+                <small><span id="year-copy"></span> &copy; <a href="http://goo.gl/TDOSuC" target="_blank">harshit</a></small>
+            </footer>
+            <!-- END Footer -->
+        </div>
+        <!-- END Login Container -->
+
+        <!-- Modal Terms -->
+        <div id="modal-terms" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Terms &amp; Conditions</h4>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- END Modal Terms -->
+
+        <!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
+        <script src="{% static 'js/login/jquery.min.js' %}"></script>
+        <script src="{% static 'js/login/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/plugins.js' %}"></script>
+        <script src="{% static 'js/app.js' %}"></script>
+
+        <!-- Load and execute javascript code used only in this page -->
+        <script src="{% static 'js/login.js' %}"></script>
+        <script>$(function(){ Login.init(); });</script>
+    </body>
+</html>

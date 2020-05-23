@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{%extends 'blog/base.html'%}
+{%block title %}Share Post By Email{%endblock%}
+{%block content%}
+{%if sent%}
+<h1>Email Successfully Sent !!!</h1>
+<p>"{{post.title}}" was sent by email</p>
+{%else%}
+   <h1>Share "{{post.title}}" by Email!!!</h1>
+   <form method="post">
+                                {%csrf_token%}
+                                <textarea class="bo-1-rad-3 bocl13 size-a-15 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-20" name="comment" placeholder="Share..."></textarea>
+
+                                <input class="bo-1-rad-3 bocl13 size-a-16 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text" name="name" placeholder="Name*">
+                                <input class="bo-1-rad-3 bocl13 size-a-16 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="email" name="email" placeholder="Email*">
+
+                                <input class="bo-1-rad-3 bocl13 size-a-16 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="email" name="to" placeholder="To Email*">
+                                 <input type="submit" name="" class='btn btn-primary btn-lg' value="Send Mail">
+
+
+
+
+</form>
+{%endif%}
+{%endblock%}

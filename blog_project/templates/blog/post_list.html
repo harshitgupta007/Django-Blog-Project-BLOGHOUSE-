@@ -1,0 +1,43 @@
+
+{% extends 'blog/base.html' %}
+{%block content%}
+ {%if tag%}
+ <h2>Posts tagged with "{{tag.name}}"</h2>
+ {%endif%}
+ <div class="flex-wr-sb-s p-t-40 p-b-15 how-bor2">
+{%for post in post_list%}
+<div class="size-w-9 w-full-sr575 m-b-25">
+<h5 class="p-b-12">
+  <a href="{{post.get_absolute_url}}" class="f1-l-1 cl2 hov-cl10 trans-03 respon2">
+     {{post.title}}
+ </a>
+ </h5>
+ <div class="cl8 p-b-18">
+  <a class="f1-s-4 cl8 hov-cl10 trans-03">
+     by {{post.author|title}}
+   </a>
+ <span class="f1-s-3 m-rl-3">
+   -
+ </span>
+<span class="f1-s-3">
+   {{post.publish}}
+</span>
+<p>Tags:{% for tag in post.tags.all %}
+<a href="{% url 'post_list_by_tag_name' tag.slug %}">{{tag.name}}</a>
+{%if not forloop.last%}, {%endif%}
+{%endfor%}</p>
+</div>
+<p class="f1-s-1 cl6">
+    {{post.body|truncatewords:60|linebreaks}}
+</p>
+<a href="{{post.get_absolute_url}}" class="f1-s-1 cl9 hov-cl10 trans-03">
+  Read More
+<i class="m-l-2 fa fa-long-arrow-alt-right"></i>
+  </a>
+ </div>
+ </div>
+{%endfor%}
+{% include 'blog/pagination.html' with page=post_list%}
+{%endblock%}
+
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{%extends 'blog/base.html'%}
+{%block title %}{{post.title}}{%endblock%}
+ {%block content%}
+ <div class="container">
+        <div class="headline bg0 flex-wr-sb-c p-rl-20 p-tb-8">
+            <div class="f2-s-1 p-r-30 m-tb-6">
+         <h1>{{post.title}}</h1>
+           <p id='date'>Published on {{post.publish}} by {{post.author|title}}</p>
+           <p>Tags: {{post.tags.all | join:' , '}}</p>
+       </div>
+   </div>
+</div>
+            <p class="f1-s-12 cl8 hov-link1 m-r-15">{{post.body|linebreaks}}</p>
+            <a href="/{{post.my_id}}/share" class='btn btn-primary btn-success'>Share Post By Email</a>
+            {% with comments.count as comments_count %}
+            <h3>{{comments_count}} Comment{{comments_count|pluralize}}</h3>
+            {% endwith%}
+            {%if comments %}
+            {%for comment in comments %}
+            <p class="f1-s-12 cl8 hov-link1 m-r-15"> comment {{forloop.counter}} by {{comment.name}} on  {{comment.created}}</p>
+            <div class="f1-s-11 cl6 p-b-25">{{comment.body|linebreaks}}</div>
+            <hr>
+            {%endfor%}
+            {%else%}
+            <p class="f1-s-12 cl8 hov-link1 m-r-15">There are NO Comments Yet !!!</p>
+            {%endif%}
+            {%if csubmit %}
+                <h2 class="f1-l-4 cl3 p-b-12">Your Comment Added Succefully</h2>
+            {%endif%}
+
+
+
+                <div>
+                            <h4 class="f1-l-4 cl3 p-b-12 font-weight-bold">
+                                Leave a Comment
+                            </h4>
+
+                            <p class="font-weight-bold" >
+                                Your email address will not be published. Required fields are marked *
+                            </p>
+
+                            <form method="post">
+                                {%csrf_token%}
+                                <textarea class="bo-1-rad-3 bocl13 size-a-15 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-20" name="body" placeholder="Comment..."></textarea>
+
+                                <input class="bo-1-rad-3 bocl13 size-a-16 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text" name="name" placeholder="Name*">
+
+                                <input class="bo-1-rad-3 bocl13 size-a-16 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text" name="email" placeholder="Email*">
+
+                                 <input type="submit" class="btn btn-success btn-lg" value="Submit Comment">
+                            </form>
+                        </div>
+
+ {%endblock%}

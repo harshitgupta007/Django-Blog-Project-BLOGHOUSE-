@@ -1,0 +1,75 @@
+.content{
+   float:left;
+     width: 60%;
+       padding:0 0 0 30px;
+        }
+     .sidebar{
+           float:right;
+              width:30%;
+                 padding:10px;
+                    background: green;
+                      height: 100%;
+                       }
+        h1{
+        text-align: center;
+        border-bottom: 1px solid #bbb;
+        padding: 0 0 10px 0;
+        }
+        #date{
+            color:#FA045A;
+            font-size:12px;
+            font-style: italic;
+             }
+        body{
+            background: white;
+            color:black;
+}
+#ch{
+  color:yellow;
+  font-size:30px;
+  font-style: italic;
+  border-bottom: 2px solid: yellow;
+}
+.page-header {
+    background-color: #fc8700;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+.content {
+    margin-left: 40px;
+}
+
+
+
+.date {
+    color: #828282;
+}
+.save {
+    float: right;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+
+.post {
+    margin-bottom: 70px;
+}
+
+.post h2 a, .post h2 a:visited {
+    color: #000000;
+}

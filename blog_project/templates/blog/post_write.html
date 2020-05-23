@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+        <div class="container pt-5">
+            <form method="POST" >
+                <h4 class="f1-l-4 cl3 p-b-12">
+                    Write New Post
+                </h4>
+                {% csrf_token %}
+                 {%if star%}
+                 <h2>Post successfully updated</h2>
+                {%endif%}
+                <input class="bo-1-rad-3 bocl13 size-a-16 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text" name="title" placeholder="Add title">
+                <textarea class="bo-1-rad-3 bocl13 size-a-15 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-20" name="body" placeholder="Add description"></textarea>
+                 <input class="bo-1-rad-3 bocl13 size-a-16 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text" name="tags" placeholder="Tags">
+                 <input type="submit" class="btn btn-success btn-lg" value="Submit Post">
+
+                </form>
+
+{% endblock content %}
